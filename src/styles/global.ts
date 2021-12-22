@@ -18,7 +18,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: #f5f5f5;
+    background: ${(props) => props.theme.colors.background};
+    color: #1d3354;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  p {
     color: #333;
   }
 `;
