@@ -1,7 +1,8 @@
 import React from 'react';
+import { RoutesComponent } from './routes';
 
-const App = function () {
-  return <div>Hello World</div>;
-};
+function App() {
+  return <RoutesComponent />;
+}
 
 export default App;
