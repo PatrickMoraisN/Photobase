@@ -18,13 +18,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: ${(props) => props.theme.colors.background};
-    color: #1d3354;
+    background: ${(props: any) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.primary};
     min-height: 100vh;
     width: 100%;
   }
 
   p {
-    color: #333;
+    color: ${(props) => props.theme.colors.text};
   }
 `;
