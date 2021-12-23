@@ -29,6 +29,7 @@ module.exports = {
     'import/prefer-default-export': 0,
     'no-underscore-dangle': 0,
     'no-unused-vars': 0,
+    'react/jsx-no-constructed-context-values': 0,
     camelcase: 0,
   },
 };
