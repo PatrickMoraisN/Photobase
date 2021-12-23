@@ -26,10 +26,22 @@ const SwitchThemeContext = createContext<ISwitchThemeContextData>(
 );
 
 export function SwitchThemeProvider({ children }: ISwitchThemeProviderProps) {
-  const [theme, setTheme] = useState(light);
+  const [theme, setTheme] = useState(() => {
+    const localStorageTheme = localStorage.getItem('@photobase-theme');
+
+    if (!localStorageTheme) {
+      return light;
+    }
+    return JSON.parse(localStorageTheme);
+  });
 
   const toggleTheme = () => {
     setTheme(theme.title === 'light' ? dark : light);
+    if (theme.title === 'light') {
+      localStorage.setItem('@photobase-theme', JSON.stringify(dark));
+      return;
+    }
+    localStorage.setItem('@photobase-theme', JSON.stringify(light));
   };
 
   return (
