@@ -7,5 +7,7 @@ export default {
 
     background: '#f5f5f5',
     text: '#333',
+    background_header: '#1d3354',
+    text_header: '#f5f5f5',
   },
 };

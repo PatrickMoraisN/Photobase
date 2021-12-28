@@ -8,4 +8,12 @@ export const HomeSection = styled.main`
   justify-content: center;
   flex-direction: column;
   gap: 70px;
+
+  h1 {
+    color: ${(props) => props.theme.colors.primary};
+  }
+
+  p {
+    color: ${(props) => props.theme.colors.primary};
+  }
 `;

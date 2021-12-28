@@ -8,6 +8,8 @@ declare module 'style-components' {
       secondary: string;
       background: string;
       text: string;
+      text_header: string;
+      background_header: string;
     };
   }
 }
