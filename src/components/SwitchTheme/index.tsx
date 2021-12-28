@@ -2,13 +2,15 @@ import React from 'react';
 import Switch from 'react-switch';
 import { BsFillSunFill } from 'react-icons/bs';
 import { FaMoon } from 'react-icons/fa';
+import { useLocation } from 'react-router';
 import * as S from './style';
 import { useSwitchTheme } from '../../hooks/useSwitchTheme';
 
 export function SwitchTheme() {
   const { theme, toggleTheme } = useSwitchTheme();
+  const params = useLocation();
   return (
-    <S.container>
+    <S.container params={params}>
       <BsFillSunFill size={30} />
       <Switch
         onChange={toggleTheme}

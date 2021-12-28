@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGoogleAuthInfo } from '../../hooks/useGoogleAuthInfo';
+import { SwitchTheme } from '../SwitchTheme';
 import * as S from './style';
 
 export function Header() {
@@ -12,6 +13,7 @@ export function Header() {
         <img src={profilePic} alt="Profile" />
         <p>{email}</p>
         <button type="button">Logout</button>
+        <SwitchTheme />
       </S.UserInfoContainer>
     </S.Header>
   );
