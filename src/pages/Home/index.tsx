@@ -5,6 +5,7 @@ import GoogleLogin, {
 } from 'react-google-login';
 import { useNavigate } from 'react-router';
 import { SwitchTheme } from '../../components/SwitchTheme';
+import { useGoogleAuthInfo } from '../../hooks/useGoogleAuthInfo';
 import * as S from './style';
 
 interface ResponseGoogle extends GoogleLoginResponse {
@@ -21,6 +22,7 @@ interface ResponseGoogle extends GoogleLoginResponse {
 export default function Home() {
   const client_id = String(process.env.REACT_APP_CLIENT_ID);
   const navigate = useNavigate();
+  const { setInfo } = useGoogleAuthInfo();
 
   const successResponseGoogle = (
     response: ResponseGoogle | GoogleLoginResponseOffline
@@ -28,7 +30,9 @@ export default function Home() {
     const {
       profileObj: { email, imageUrl },
     } = response as ResponseGoogle;
-    // navigate('/photo');
+    const obj = { emailParam: email, profilePicParam: imageUrl };
+    setInfo(obj);
+    navigate('/photo');
   };
 
   const failureResponseGoogle = () => {};
