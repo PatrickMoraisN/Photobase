@@ -4,6 +4,7 @@ import GoogleLogin, {
   GoogleLoginResponseOffline,
 } from 'react-google-login';
 import { useNavigate } from 'react-router';
+import { toast, ToastContainer } from 'react-toastify';
 import { SwitchTheme } from '../../components/SwitchTheme';
 import { useGoogleAuthInfo } from '../../hooks/useGoogleAuthInfo';
 import * as S from './style';
@@ -35,7 +36,18 @@ export default function Home() {
     navigate('/photo');
   };
 
-  const failureResponseGoogle = () => {};
+  const failureResponseGoogle = () => {
+    toast.error('Something went wrong!', {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
+  };
 
   return (
     <S.HomeSection>
@@ -48,6 +60,7 @@ export default function Home() {
         onFailure={failureResponseGoogle}
       />
       <SwitchTheme />
+      <ToastContainer />
     </S.HomeSection>
   );
 }

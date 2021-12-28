@@ -1,4 +1,3 @@
-import { Params, useParams } from 'react-router';
 import styled from 'styled-components';
 
 interface IContainerProps {
