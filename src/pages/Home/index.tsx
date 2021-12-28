@@ -1,12 +1,35 @@
 import React from 'react';
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, {
+  GoogleLoginResponse,
+  GoogleLoginResponseOffline,
+} from 'react-google-login';
+import { useNavigate } from 'react-router';
 import { SwitchTheme } from '../../components/SwitchTheme';
 import * as S from './style';
 
-export default function Home() {
-  const client_id = String(process.env.CLIENT_ID);
+interface ResponseGoogle extends GoogleLoginResponse {
+  profileObj: {
+    googleId: string;
+    imageUrl: string;
+    email: string;
+    name: string;
+    givenName: string;
+    familyName: string;
+  };
+}
 
-  const successResponseGoogle = () => {};
+export default function Home() {
+  const client_id = String(process.env.REACT_APP_CLIENT_ID);
+  const navigate = useNavigate();
+
+  const successResponseGoogle = (
+    response: ResponseGoogle | GoogleLoginResponseOffline
+  ) => {
+    const {
+      profileObj: { email, imageUrl },
+    } = response as ResponseGoogle;
+    // navigate('/photo');
+  };
 
   const failureResponseGoogle = () => {};
 
