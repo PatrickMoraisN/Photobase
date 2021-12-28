@@ -10,6 +10,7 @@ export const HomeSection = styled.main`
   gap: 70px;
 
   h1 {
+    font-size: 4rem;
     color: ${(props) => props.theme.colors.primary};
   }
 
