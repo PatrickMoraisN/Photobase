@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
 import { Header } from '../../components/Header';
+import * as S from './style';
 
 export function Photo() {
   const navigate = useNavigate();
@@ -26,6 +27,9 @@ export function Photo() {
   return (
     <>
       <Header />
+      <S.container>
+        <h2>Gallery</h2>
+      </S.container>
       <ToastContainer />
     </>
   );
