@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { toast, ToastContainer } from 'react-toastify';
+import { Gallery } from '../../components/Gallery';
 import { Header } from '../../components/Header';
 import * as S from './style';
 
@@ -29,6 +30,7 @@ export function Photo() {
       <Header />
       <S.container>
         <h2>Gallery</h2>
+        <Gallery />
       </S.container>
       <ToastContainer />
     </>
