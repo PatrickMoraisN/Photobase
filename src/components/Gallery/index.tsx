@@ -1,4 +1,5 @@
 import React from 'react';
+import { DeletePhotoService } from '../../services/DeletePhotoService';
 import { GetAllPhotosService } from '../../services/GetAllPhotosService';
 import { PhotoProps } from '../../types/Photo';
 import * as S from './style';
@@ -13,6 +14,13 @@ export function Gallery() {
     const photos = await getAllPhotosService.execute();
     setPhotosList(photos);
     setIsLoading(false);
+  };
+
+  const handleDeletePhoto = async (e: React.MouseEvent<HTMLElement>) => {
+    const name = e.currentTarget.getAttribute('data-nameId') as string;
+    const deletePhotoService = new DeletePhotoService();
+    await deletePhotoService.execute(name);
+    window.location.reload();
   };
 
   React.useEffect(() => {
@@ -30,6 +38,13 @@ export function Gallery() {
         photosList.map((photo) => (
           <S.PhotoContaier key={photo.name}>
             <img src={photo.url} alt={photo.name} />
+            <button
+              type="button"
+              data-nameId={photo.name}
+              onClick={handleDeletePhoto}
+            >
+              Delete
+            </button>
           </S.PhotoContaier>
         ))}
     </S.GalleryContainer>

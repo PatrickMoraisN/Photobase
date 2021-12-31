@@ -1,10 +1,9 @@
 import { deleteObject, ref } from '@firebase/storage';
 import React from 'react';
 import { storage } from '../firebase/firebase';
-import { PhotoProps } from '../types/Photo';
 
 class DeletePhotoService {
-  async execute({ name }: PhotoProps) {
+  async execute(name: string) {
     const localStorageUser = localStorage.getItem('@photobase-user');
 
     if (localStorageUser) {
