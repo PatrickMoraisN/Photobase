@@ -1,6 +1,7 @@
 import React from 'react';
 import { GetAllPhotosService } from '../../services/GetAllPhotosService';
 import { PhotoProps } from '../../types/Photo';
+import * as S from './style';
 
 export function Gallery() {
   const [isLoading, setIsLoading] = React.useState(false);
@@ -27,9 +28,9 @@ export function Gallery() {
       {!isLoading &&
         photosList.length > 0 &&
         photosList.map((photo) => (
-          <div key={photo.name}>
+          <S.PhotoContaier key={photo.name}>
             <img src={photo.url} alt={photo.name} />
-          </div>
+          </S.PhotoContaier>
         ))}
     </div>
   );
