@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import { InsertPhotoService } from '../../services/InsertPhotoService';
+import * as S from './style';
 
 export function UploadPhoto() {
   const [isUploading, setIsUploading] = React.useState<boolean>();
@@ -23,13 +24,16 @@ export function UploadPhoto() {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <input type="file" name="image" />
+    <S.FormContainer onSubmit={handleFormSubmit}>
+      <label htmlFor="file-upload">
+        Upload Photo
+        <input type="file" name="image" id="file-upload" />
+      </label>
       {isUploading ? (
         <button type="submit">Uploading...</button>
       ) : (
         <button type="submit">Add Photo</button>
       )}
-    </form>
+    </S.FormContainer>
   );
 }
