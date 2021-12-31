@@ -24,4 +24,5 @@ export const GalleryContainer = styled.div`
   align-items: center;
   flex-wrap: wrap;
   padding: 30px;
+  gap: 20px;
 `;
