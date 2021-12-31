@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const PhotoContaier = styled.div`
   width: 12rem;
   height: 12rem;
-  background: #444;
+  background: ${(props) => props.theme.colors.background_upload};
   padding: 10px;
   display: flex;
   align-items: center;

@@ -10,6 +10,7 @@ declare module 'style-components' {
       text: string;
       text_header: string;
       background_header: string;
+      background_upload: string;
     };
   }
 }

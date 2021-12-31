@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const FormContainer = styled.form`
-  margin-top: 15px;
-  background: #444;
+  margin-bottom: 15px;
+  background: ${(props) => props.theme.colors.background_upload};
   width: 100%;
   padding: 13px 35px;
   max-width: 1200px;
