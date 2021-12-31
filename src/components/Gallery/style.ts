@@ -16,3 +16,12 @@ export const PhotoContaier = styled.div`
     border-radius: 15px;
   }
 `;
+
+export const GalleryContainer = styled.div`
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30px;
+`;

@@ -20,7 +20,7 @@ export function Gallery() {
   }, []);
 
   return (
-    <div>
+    <S.GalleryContainer>
       {isLoading && <p>Loading...</p>}
 
       {!isLoading && photosList.length === 0 && <p>Add Photos!</p>}
@@ -32,6 +32,6 @@ export function Gallery() {
             <img src={photo.url} alt={photo.name} />
           </S.PhotoContaier>
         ))}
-    </div>
+    </S.GalleryContainer>
   );
 }
