@@ -1,4 +1,5 @@
 import React from 'react';
+import { AiFillDelete } from 'react-icons/ai';
 import { DeletePhotoService } from '../../services/DeletePhotoService';
 import { GetAllPhotosService } from '../../services/GetAllPhotosService';
 import { PhotoProps } from '../../types/Photo';
@@ -43,7 +44,7 @@ export function Gallery() {
               data-nameId={photo.name}
               onClick={handleDeletePhoto}
             >
-              Delete
+              <AiFillDelete size={30} />
             </button>
           </S.PhotoContaier>
         ))}
