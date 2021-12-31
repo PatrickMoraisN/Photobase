@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 
 export const PhotoContaier = styled.div`
-  width: 12rem;
-  height: 12rem;
+  width: 10rem;
+  height: 10rem;
   background: ${(props) => props.theme.colors.background_upload};
-  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,8 +11,8 @@ export const PhotoContaier = styled.div`
   border-radius: 15px;
 
   img {
-    width: 10rem;
-    height: 10rem;
+    width: 140px;
+    height: 140px;
     border-radius: 15px;
     object-fit: cover;
   }
@@ -21,9 +20,13 @@ export const PhotoContaier = styled.div`
   button {
     background: none;
     border: none;
-    margin-top: 10px;
+    position: relative;
+    display: flex;
+    justify-content: center;
 
     svg {
+      position: absolute;
+      bottom: -38px;
       color: ${(props) => props.theme.colors.text};
       cursor: pointer;
       transition: 0.3s;

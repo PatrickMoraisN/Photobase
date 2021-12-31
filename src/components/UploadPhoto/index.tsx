@@ -4,6 +4,7 @@ import * as S from './style';
 
 export function UploadPhoto() {
   const [isUploading, setIsUploading] = React.useState<boolean>();
+  const [isFile, setIsFile] = React.useState(false);
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -23,16 +24,26 @@ export function UploadPhoto() {
     }
   };
 
+  const handleFileChange = () => {
+    setIsFile(true);
+  };
+
   return (
     <S.FormContainer onSubmit={handleFormSubmit}>
       <label htmlFor="file-upload">
         Upload Photo
-        <input type="file" name="image" id="file-upload" />
+        <input
+          type="file"
+          name="image"
+          id="file-upload"
+          onChange={handleFileChange}
+        />
       </label>
+      {isFile && <span>File waiting for deploy..</span>}
       {isUploading ? (
-        <button type="submit">Uploading...</button>
+        <button type="submit">Deploying...</button>
       ) : (
-        <button type="submit">Add Photo</button>
+        <button type="submit">Deploy</button>
       )}
     </S.FormContainer>
   );
