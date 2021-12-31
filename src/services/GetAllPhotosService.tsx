@@ -7,7 +7,6 @@ class GetAllPhotosService {
   async execute() {
     const list: PhotoProps[] = [];
 
-    console.log('ale2');
     const localStorageUser = localStorage.getItem('@photobase-user');
     if (localStorageUser) {
       const { email } = JSON.parse(localStorageUser);
