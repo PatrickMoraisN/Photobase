@@ -6,10 +6,7 @@ import { PhotoProps } from '../types/Photo';
 class InsertPhotoService {
   async execute(file: File) {
     const localStorageUser = localStorage.getItem('@photobase-user');
-    if (
-      ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type) &&
-      localStorageUser
-    ) {
+    if (localStorageUser) {
       const { email } = JSON.parse(localStorageUser);
       const namePhotoId = uuid();
 

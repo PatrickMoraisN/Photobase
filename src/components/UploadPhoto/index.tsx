@@ -1,4 +1,5 @@
 import React, { FormEvent } from 'react';
+import { toast } from 'react-toastify';
 import { InsertPhotoService } from '../../services/InsertPhotoService';
 import * as S from './style';
 
@@ -12,15 +13,39 @@ export function UploadPhoto() {
       const formData = new FormData(e.currentTarget);
       const file = formData.get('image') as File;
 
-      if (file && file.size > 0) {
+      if (
+        file &&
+        file.size > 0 &&
+        ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type)
+      ) {
         const insertPhotoService = new InsertPhotoService();
         setIsUploading(true);
         await insertPhotoService.execute(file);
         setIsUploading(false);
         window.location.reload();
+      } else {
+        toast.error('Check your image! Upload error!', {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+        });
       }
     } catch (error) {
-      console.log(error);
+      toast.error('Check your image! Upload error!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'dark',
+      });
     }
   };
 
