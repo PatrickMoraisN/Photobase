@@ -3,11 +3,14 @@ import { AiFillDelete } from 'react-icons/ai';
 import { DeletePhotoService } from '../../services/DeletePhotoService';
 import { GetAllPhotosService } from '../../services/GetAllPhotosService';
 import { PhotoProps } from '../../types/Photo';
+import { ImageModal } from '../ImageModal';
 import * as S from './style';
 
 export function Gallery() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [photosList, setPhotosList] = React.useState<PhotoProps[]>([]);
+  const [isImageModalOpen, setIsImageModalOpen] = React.useState(false);
+  const [imageOpenUrl, setImageOpenUrl] = React.useState('');
 
   const getAllPhotos = async () => {
     const getAllPhotosService = new GetAllPhotosService();
@@ -24,6 +27,15 @@ export function Gallery() {
     window.location.reload();
   };
 
+  const handleCloseImageModal = () => {
+    setIsImageModalOpen(false);
+  };
+
+  const handleOpenImageModal = (url: string) => {
+    setImageOpenUrl(url);
+    setIsImageModalOpen(true);
+  };
+
   React.useEffect(() => {
     getAllPhotos();
   }, []);
@@ -38,7 +50,12 @@ export function Gallery() {
         photosList.length > 0 &&
         photosList.map((photo) => (
           <S.PhotoContaier key={photo.name}>
-            <img src={photo.url} alt={photo.name} />
+            <button
+              type="button"
+              onClick={() => handleOpenImageModal(photo.url)}
+            >
+              <img src={photo.url} alt={photo.name} />
+            </button>
             <button
               type="button"
               data-nameId={photo.name}
@@ -48,6 +65,11 @@ export function Gallery() {
             </button>
           </S.PhotoContaier>
         ))}
+      <ImageModal
+        isOpen={isImageModalOpen}
+        onRequestClose={handleCloseImageModal}
+        urlImage={imageOpenUrl}
+      />
     </S.GalleryContainer>
   );
 }
