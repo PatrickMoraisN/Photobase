@@ -5,7 +5,8 @@ import * as S from './style';
 
 export function UploadPhoto() {
   const [isUploading, setIsUploading] = React.useState<boolean>();
-  const [isFile, setIsFile] = React.useState(false);
+  const [image, setImage] = React.useState<File>();
+  const [imagePreviewUrl, setImagePreviewUrl] = React.useState('');
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     try {
       e.preventDefault();
@@ -49,8 +50,12 @@ export function UploadPhoto() {
     }
   };
 
-  const handleFileChange = () => {
-    setIsFile(true);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const currentImage = event.currentTarget.files as FileList;
+    const imageFile = currentImage[0];
+    const imageFileUrl = URL.createObjectURL(imageFile);
+    setImage(imageFile);
+    setImagePreviewUrl(imageFileUrl);
   };
 
   return (
@@ -64,7 +69,16 @@ export function UploadPhoto() {
           onChange={handleFileChange}
         />
       </label>
-      {isFile && <span>File waiting for deploy..</span>}
+      {image && (
+        <S.PreviewContainer>
+          <S.ImagePreview src={imagePreviewUrl} alt={image.name} />
+          {!['image/jpeg', 'image/jpg', 'image/png'].includes(image.type) ? (
+            <span>Select an image of type png / jpeg / jpg please!!!</span>
+          ) : (
+            <span>{image.name} waiting for deploy..</span>
+          )}
+        </S.PreviewContainer>
+      )}
       {isUploading ? (
         <button type="submit">Deploying...</button>
       ) : (

@@ -11,6 +11,7 @@ export const FormContainer = styled.form`
   align-items: center;
   justify-content: space-between;
   border-radius: 8px;
+  position: relative;
 
   input[type='file'] {
     display: none;
@@ -30,4 +31,18 @@ export const FormContainer = styled.form`
       filter: brightness(0.8);
     }
   }
+`;
+
+export const PreviewContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+`;
+
+export const ImagePreview = styled.img`
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+  border-radius: 6px;
 `;
