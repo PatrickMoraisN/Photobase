@@ -15,6 +15,13 @@ export const PhotoContaier = styled.div`
     height: 140px;
     border-radius: 15px;
     object-fit: cover;
+    border: 2px solid ${(props) => props.theme.colors.background_upload};
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid white;
+    }
   }
 
   button {
