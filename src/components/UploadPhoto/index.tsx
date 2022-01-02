@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent } from 'react';
 import { toast } from 'react-toastify';
 import { InsertPhotoService } from '../../services/InsertPhotoService';
 import * as S from './style';
@@ -50,7 +50,7 @@ export function UploadPhoto() {
     }
   };
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
     const currentImage = event.currentTarget.files as FileList;
     const imageFile = currentImage[0];
     const imageFileUrl = URL.createObjectURL(imageFile);
