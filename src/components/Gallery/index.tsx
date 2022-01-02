@@ -37,12 +37,6 @@ export function Gallery() {
     setIsImageModalOpen(true);
   };
 
-  // const handleDownloadImage = (url: string, imageName: string) => {
-  //   const fileImage = new Blob([url]);
-  //   const urlDonwload = URL.createObjectURL(fileImage);
-  //   saveAs(urlDonwload, 'image.png');
-  // };
-
   React.useEffect(() => {
     getAllPhotos();
   }, []);
@@ -56,8 +50,6 @@ export function Gallery() {
       {!isLoading &&
         photosList.length > 0 &&
         photosList.map((photo) => {
-          // const fileImage = new Blob([photo.url], { type: 'image/*' });
-          // const downloadUrl = URL.createObjectURL(fileImage);
           return (
             <S.PhotoContaier key={photo.name}>
               <button
@@ -66,12 +58,6 @@ export function Gallery() {
               >
                 <img src={photo.url} alt={photo.name} />
               </button>
-              {/* <button
-                type="button"
-                onClick={() => handleDownloadImage(photo.url, photo.name)}
-              >
-                donwload
-              </button> */}
               <button
                 type="button"
                 data-nameId={photo.name}
