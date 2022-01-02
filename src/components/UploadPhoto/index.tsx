@@ -21,9 +21,16 @@ export function UploadPhoto() {
       ) {
         const insertPhotoService = new InsertPhotoService();
         setIsUploading(true);
-        await insertPhotoService.execute(file);
+        await toast.promise(insertPhotoService.execute(file), {
+          pending: 'Uploading image...',
+          success: {
+            render() {
+              setTimeout(() => window.location.reload(), 3000);
+              return 'Image sent successfully! Refreshing page...';
+            },
+          },
+        });
         setIsUploading(false);
-        window.location.reload();
       } else {
         toast.error('Check your image! Upload error!', {
           position: 'top-right',

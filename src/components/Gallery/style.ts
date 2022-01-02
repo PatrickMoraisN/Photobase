@@ -50,7 +50,8 @@ export const GalleryContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 30px;
-  gap: 20px;
+  gap: 40px;
 `;
