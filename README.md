@@ -24,6 +24,15 @@ Modal photo - delete photo
 <br />
 
 ---
+# :scroll: Rules
+
+- ### Photo upload
+  - It is not allowed to upload an empty file.
+  - It is not allowed to upload file with other extensions than these: `'image/jpeg', 'image/jpg', 'image/png'`.
+
+*warned by React Toastify*
+
+---
 # :monocle_face: About
 Project designed to practice React integration with Firebase Storage and Google OAuth / Theme Switch.
 
@@ -44,7 +53,9 @@ This project was developed with the following technologies: <br>
 - :heavy_check_mark: **Hooks**
 - :heavy_check_mark: **Styled Components**
 - :heavy_check_mark: **TypeScript**
-- :heavy_check_mark: **Firebase**
+- :heavy_check_mark: **OAuth**
+- :heavy_check_mark: **Firebase Storage**
+- :heavy_check_mark: **Modal / Toastify / Switch**
 - :heavy_check_mark: **ESLint**
 - :heavy_check_mark: **Prettier**
 <br><br>
@@ -55,16 +66,41 @@ This project was developed with the following technologies: <br>
 # :hammer_and_wrench: Installation Steps
 **This project involves many .env files, be sure you have them!**
 
+---
+**You must have an active project on google console**
+  - Go to `https://console.cloud.google.com/`
+  - Create and configure a new project API (set `http://localhost:3000` in allowed urls).
+  - Save `client_id` and `secret_key` keys, we need them.
+
+**You must have an active project on Firebase**
+  - Go to `https://console.firebase.google.com/`
+  - Create and configure a new project.
+  - Save Firebase keys, we need them.
+  - On Storage session, create a folder `images`.
+  - On Storage session, set `Rules` to: <br>
+
+  ```js
+  rules_version = '2';
+  service firebase.storage {
+    match /b/{bucket}/o {
+      match /{allPaths=**} {
+        allow read, write: if request.auth!=null;
+      }
+    }
+  }
+```
+---
+
 1. Clone the repository
 
 ```bash
-git clone git@github.com:PatrickMoraisN/ignews.git
+git clone git@github.com:PatrickMoraisN/Photobase.git
 ```
 
 2. Change the working directory
 
 ```bash
-cd ignews
+cd Photobase
 ```
 
 3. Install dependencies
@@ -73,35 +109,30 @@ cd ignews
 npm install
 ```
 
-4. Create `.env.local` file in root and add your variables
+4. Create `.env` file in root and add your variables
 
 ```bash
-# Stripe
+### GOOGLE
 
-STRIPE_API_KEY=YOUR_STRIPE_API_KEY
-NEXT_PUBLIC_STRIPE_PUBLIC_KEY=YOUR_NEXT_PUBLIC_STRIPE_KEY
-STRIPE_WEBHOOK=YOUR_STRIPE_WEBHOOK_SECRET
+REACT_APP_CLIENT_ID=__your-client-id-from-google__
+REACT_APP_SECRET_KEY_CLIENT=__your-secret-key-from-google__
 
-# Github
+### FIREBASE
 
-GITHUB_CLIENT_ID=YOUR_GITHUB_CLIEND_ID
-GITHUB_CLIENT_SECRET=YOUR_GITHUB_CLIENT_SECRET
+REACT_APP_API_KEY=__your-api-key-from-firebase__
+REACT_APP_AUTH_DOMAIN=__your-auth-domain-from-firebase__
+REACT_APP_PROJECT_ID=__your-project-id-from-firebase__
+REACT_APP_STORAGE_BUCKET=__your-storage-bucket-from-firebase__
+REACT_APP_MESSAGING_SENDER_ID=__your-messaging-sender-id-from-firebase__
+REACT_APP_APP_ID=__your-app-id-from-firebase__
 
-# FaunaDB
 
-FAUNADB_KEY=YOUR_FAUNADB_KEY
-
-
-# Prismic CMS 
-
-PRISMIC_ENDPOINT=YOUR_PRISMIC_ENDPOINT
-PRISMIC_ACCESS_TOKEN=YOUR_PRISMIC_ACCESS_TOKEN_ENV
 ```
 
 5. Run the app
 
 ```bash
-npm run dev
+npm start
 ```
 
 You are all set! Open [localhost:3000](http://localhost:3000/) to see the app.
