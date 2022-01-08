@@ -22,6 +22,7 @@ interface ResponseGoogle extends GoogleLoginResponse {
 
 export default function Home() {
   const client_id = String(process.env.REACT_APP_CLIENT_ID);
+  console.log(client_id);
   const navigate = useNavigate();
   const { setInfo } = useGoogleAuthInfo();
 
@@ -36,17 +37,18 @@ export default function Home() {
     navigate('/photo');
   };
 
-  const failureResponseGoogle = () => {
-    toast.error('Something went wrong!', {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: 'dark',
-    });
+  const failureResponseGoogle = (error: any) => {
+    // toast.error('Something went wrong!', {
+    //   position: 'top-right',
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    //   theme: 'dark',
+    // });
+    console.log(error);
   };
 
   return (
